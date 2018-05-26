@@ -72,10 +72,9 @@ namespace FileIO
 		/// </summary>
 		/// <param name="FilePath">ファイルへのパス</param>
 		/// <param name="strings">書き込み内容(1行ごとのstring配列)</param>
-		/// <returns>成功:true、失敗:false</returns>
-		public static bool WriteStrings(string FilePath, string[] strings)
+		/// <returns></returns>
+		public static void WriteStrings(string FilePath, string[] strings)
 		{
-			bool r = true;
 			using (StreamWriter file = new StreamWriter(FilePath, true, Encoding.Unicode))
 			{
 				for (int i = 0; i < strings.Length; i++)
@@ -84,7 +83,7 @@ namespace FileIO
 				}
 			}
 
-			return r;
+			return;
 		}
 
 		/// <summary>
@@ -93,10 +92,9 @@ namespace FileIO
 		/// <param name="FilePath">ファイルへのパス</param>
 		/// <param name="strings">書き込み内容(1行ごとのstring配列)</param>
 		/// <param name="append">データをファイルに追加する場合は true、ファイルを上書きする場合は false。</param>
-		/// <returns>成功:true、失敗:false</returns>
-		public static bool WriteStrings(string FilePath, string[] strings, bool append)
+		/// <returns></returns>
+		public static void WriteStrings(string FilePath, string[] strings, bool append)
 		{
-			bool r = true;
 			using (StreamWriter file = new StreamWriter(FilePath, append, Encoding.Unicode))
 			{
 				for (int i = 0; i < strings.Length; i++)
@@ -105,7 +103,7 @@ namespace FileIO
 				}
 			}
 
-			return r;
+			return;
 		}
 
 		/// <summary>
@@ -113,10 +111,9 @@ namespace FileIO
 		/// </summary>
 		/// <param name="FilePath">ファイルへのパス</param>
 		/// <param name="strings">書き込み内容(1行ごとのList形式)</param>
-		/// <returns>成功:true、失敗:false</returns>
-		public static bool WriteStrings(string FilePath, List<string> strings)
+		/// <returns></returns>
+		public static void WriteStrings(string FilePath, List<string> strings)
 		{
-			bool r = true;
 			using (StreamWriter file = new StreamWriter(FilePath, true, Encoding.Unicode))
 			{
 				string[] line = strings.ToArray();
@@ -126,7 +123,7 @@ namespace FileIO
 				}
 			}
 
-			return r;
+			return;
 		}
 
 		/// <summary>
@@ -135,10 +132,9 @@ namespace FileIO
 		/// <param name="FilePath">ファイルへのパス</param>
 		/// <param name="strings">書き込み内容(1行ごとのList形式)</param>
 		/// <param name="append">データをファイルに追加する場合は true、ファイルを上書きする場合は false。</param>
-		/// <returns>成功:true、失敗:false</returns>
-		public static bool WriteStrings(string FilePath, List<string> strings, bool append)
+		/// <returns></returns>
+		public static void WriteStrings(string FilePath, List<string> strings, bool append)
 		{
-			bool r = true;
 			using (StreamWriter file = new StreamWriter(FilePath, append, Encoding.Unicode))
 			{
 				string[] line = strings.ToArray();
@@ -148,7 +144,7 @@ namespace FileIO
 				}
 			}
 
-			return r;
+			return;
 		}
 
 		/// <summary>
@@ -156,10 +152,9 @@ namespace FileIO
 		/// </summary>
 		/// <param name="FilePath">ファイルへのパス</param>
 		/// <param name="strings">書き込み内容</param>
-		/// <returns>成功:true、失敗:false</returns>
-		public static bool WriteStrings(string FilePath, string strings)
+		/// <returns></returns>
+		public static void WriteStrings(string FilePath, string strings)
 		{
-			bool r = true;
 			using (StreamWriter file = new StreamWriter(FilePath, true, Encoding.Unicode))
 			{
 				if (strings != "")
@@ -168,7 +163,7 @@ namespace FileIO
 				}
 			}
 
-			return r;
+			return;
 		}
 
 		/// <summary>
@@ -177,10 +172,9 @@ namespace FileIO
 		/// <param name="FilePath">ファイルへのパス</param>
 		/// <param name="strings">書き込み内容</param>
 		/// <param name="append">データをファイルに追加する場合は true、ファイルを上書きする場合は false。</param>
-		/// <returns>成功:true、失敗:false</returns>
-		public static bool WriteStrings(string FilePath, string strings, bool append)
+		/// <returns></returns>
+		public static void WriteStrings(string FilePath, string strings, bool append)
 		{
-			bool r = true;
 			using (StreamWriter file = new StreamWriter(FilePath, append, Encoding.Unicode))
 			{
 				if (strings != "")
@@ -189,7 +183,7 @@ namespace FileIO
 				}
 			}
 
-			return r;
+			return;
 		}
 
 
@@ -199,17 +193,16 @@ namespace FileIO
 		/// </summary>
 		/// <param name="FilePath">ファイルパス</param>
 		/// <param name="AddString">追加する文字列</param>
-		/// <returns>成功:true</returns>
+		/// <returns></returns>
 		[Obsolete("このメソッドの使用は推薦しません。代わりに WriteStrings() の使用を推薦します。")]
-		public static bool AddString(string FilePath, string AddString)
+		public static void AddString(string FilePath, string AddString)
 		{
-			bool r = true;
 			using (StreamWriter file = new StreamWriter(FilePath, true, Encoding.Unicode))
 			{
 				file.WriteLine(AddString);
 			}
 
-			return r;
+			return;
 		}
 
 		/// <summary>
@@ -219,17 +212,16 @@ namespace FileIO
 		/// <param name="FilePath">ファイルパス</param>
 		/// <param name="AddString">追加する文字列</param>
 		/// <param name="append">データをファイルに追加する場合は true、ファイルを上書きする場合は false。</param>
-		/// <returns>成功:true</returns>
+		/// <returns></returns>
 		[Obsolete("このメソッドの使用は推薦しません。代わりに WriteStrings() の使用を推薦します。")]
-		public static bool AddString(string FilePath, string AddString, bool append)
+		public static void AddString(string FilePath, string AddString, bool append)
 		{
-			bool r = true;
 			using (StreamWriter file = new StreamWriter(FilePath, append, Encoding.Unicode))
 			{
 				file.WriteLine(AddString);
 			}
 
-			return r;
+			return;
 		}
 	}
 
