@@ -17,15 +17,18 @@ namespace FileIO
 		/// 1行ごとのList形式でファイルの内容を読み取ります。outで参照渡しすることで戻り値はファイルの有無のbool値になります。
 		/// </summary>
 		/// <param name="FilePath">ファイルへのパス</param>
-		/// <returns>ファイルの内容</returns>
+		/// <returns>ファイルの内容(ファイルが存在しない場合はnull)</returns>
 		public static List<string> ReadStrings(string FilePath)
 		{
+			// ファイルが存在しない場合、nullを返す。
+			if (!File.Exists(FilePath))
+			{
+				return null;
+			}
 			using (StreamReader file = new StreamReader(FilePath, Encoding.Unicode))
 			{
 				string line = "";
-				List<string> list = new List<string>(); // 空のListを作成する
-
-				// 1行ずつ読み込んでいき、末端(何もない行)までwhile文で繰り返す
+				List<string> list = new List<string>();
 				while ((line = file.ReadLine()) != null)
 				{
 					list.Add(line);
@@ -54,8 +57,6 @@ namespace FileIO
 			using (StreamReader file = new StreamReader(FilePath, Encoding.Unicode))
 			{
 				string line = "";
-
-				// 1行ずつ読み込んでいき、末端(何もない行)までwhile文で繰り返す
 				while ((line = file.ReadLine()) != null)
 				{
 					strings.Add(line);
