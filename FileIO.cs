@@ -225,6 +225,56 @@ namespace FileIO
 		}
 	}
 
+	class csvIO
+	{
+		/// <summary>
+		/// csvファイルを読み込み，stringの2次元Listで返します．
+		/// </summary>
+		/// <param name="FilePath">ファイルへのパス</param>
+		/// <param name="delimiter">区切り文字</param>
+		/// <returns>ファイルの内容(ファイルが存在しない場合はnull)</returns>
+		public static List<List<string>> ReadStrings(string FilePath, string delimiter)
+		{
+			// ファイルが存在しない場合、nullを返す。
+			if (!File.Exists(FilePath))
+			{
+				return null;
+			}
+
+			List<List<string>> list = new List<List<string>>();
+
+			using (StreamReader file = new StreamReader(FilePath, Encoding.Unicode))
+			{
+				string line = "";
+				
+				while ((line = file.ReadLine()) != null)
+				{
+					list.Add(new List<string>());
+					int i = 0;
+					while (true) {
+						if(i + delimiter.Length > line.Length - delimiter.Length || i == -1)
+						{
+							break;
+						}
+						if (line.IndexOf(delimiter, i) == -1) {
+
+							list[list.Count - 1].Add(line.Substring(i, line.Length - i));
+							break;
+						}
+						else {
+
+							list[list.Count - 1].Add(line.Substring(i, line.IndexOf(delimiter, i) - i));
+						}
+						i = line.IndexOf(delimiter,i + delimiter.Length - 1) + delimiter.Length;
+						
+					}
+				}
+			}
+
+			return list;
+		}
+	}
+
 	/// <summary>
 	/// ファイル関連メソッド
 	/// </summary>
