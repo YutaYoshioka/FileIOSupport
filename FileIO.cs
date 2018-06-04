@@ -273,6 +273,38 @@ namespace FileIO
 
 			return list;
 		}
+
+		/// <summary>
+		/// ファイルに書き込みます。
+		/// </summary>
+		/// <param name="FilePath">ファイルへのパス</param>
+		/// <param name="strings">書き込み内容</param>
+		/// <param name="delimiter">区切り文字</param>
+		/// <param name="append">データをファイルに追加する場合は true、ファイルを上書きする場合は false。</param>
+		/// <returns></returns>
+		public static void WriteStrings(string FilePath, List<List<string>> strings, string delimiter, bool append)
+		{
+			using (StreamWriter file = new StreamWriter(FilePath, append, Encoding.Unicode))
+			{
+				if(strings != null)
+				{
+					for (int i = 0; i < strings.Count; i++)
+					{
+						for (int j = 0; j < strings[i].Count; j++)
+						{
+							if(j != 0)
+							{
+								file.Write(delimiter);
+							}
+							file.Write(strings[i][j]);
+						}
+						file.WriteLine();
+					}
+				}
+			}
+
+			return;
+		}
 	}
 
 	/// <summary>
