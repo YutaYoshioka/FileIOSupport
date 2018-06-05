@@ -253,22 +253,17 @@ namespace FileIO
 					int i = 0;
 					while (true)
 					{
-						if (i + delimiter.Length > line.Length - delimiter.Length || i == -1)
-						{
-							break;
-						}
 						if (line.IndexOf(delimiter, i) == -1)
 						{
-
 							list[list.Count - 1].Add(line.Substring(i, line.Length - i));
 							break;
 						}
 						else
 						{
-
 							list[list.Count - 1].Add(line.Substring(i, line.IndexOf(delimiter, i) - i));
 						}
-						i = line.IndexOf(delimiter, i + delimiter.Length - 1) + delimiter.Length;
+						// 次のセルの開始地点を検索
+						i = line.IndexOf(delimiter, i) + delimiter.Length;
 
 					}
 				}
