@@ -246,27 +246,30 @@ namespace FileIO
 			using (StreamReader file = new StreamReader(FilePath, Encoding.Unicode))
 			{
 				string line = "";
-				
+
 				while ((line = file.ReadLine()) != null)
 				{
 					list.Add(new List<string>());
 					int i = 0;
-					while (true) {
-						if(i + delimiter.Length > line.Length - delimiter.Length || i == -1)
+					while (true)
+					{
+						if (i + delimiter.Length > line.Length - delimiter.Length || i == -1)
 						{
 							break;
 						}
-						if (line.IndexOf(delimiter, i) == -1) {
+						if (line.IndexOf(delimiter, i) == -1)
+						{
 
 							list[list.Count - 1].Add(line.Substring(i, line.Length - i));
 							break;
 						}
-						else {
+						else
+						{
 
 							list[list.Count - 1].Add(line.Substring(i, line.IndexOf(delimiter, i) - i));
 						}
-						i = line.IndexOf(delimiter,i + delimiter.Length - 1) + delimiter.Length;
-						
+						i = line.IndexOf(delimiter, i + delimiter.Length - 1) + delimiter.Length;
+
 					}
 				}
 			}
@@ -286,13 +289,109 @@ namespace FileIO
 		{
 			using (StreamWriter file = new StreamWriter(FilePath, append, Encoding.Unicode))
 			{
-				if(strings != null)
+				if (strings != null)
 				{
 					for (int i = 0; i < strings.Count; i++)
 					{
 						for (int j = 0; j < strings[i].Count; j++)
 						{
-							if(j != 0)
+							if (j != 0)
+							{
+								file.Write(delimiter);
+							}
+							file.Write(strings[i][j]);
+						}
+						file.WriteLine();
+					}
+				}
+			}
+
+			return;
+		}
+
+		/// <summary>
+		/// ファイルに書き込みます。
+		/// </summary>
+		/// <param name="FilePath">ファイルへのパス</param>
+		/// <param name="strings">書き込み内容</param>
+		/// <param name="delimiter">区切り文字</param>
+		/// <param name="append">データをファイルに追加する場合は true、ファイルを上書きする場合は false。</param>
+		/// <returns></returns>
+		public static void WriteStrings(string FilePath, string[][] strings, string delimiter, bool append)
+		{
+			using (StreamWriter file = new StreamWriter(FilePath, append, Encoding.Unicode))
+			{
+				if (strings != null)
+				{
+					for (int i = 0; i < strings.Length; i++)
+					{
+						for (int j = 0; j < strings[i].Length; j++)
+						{
+							if (j != 0)
+							{
+								file.Write(delimiter);
+							}
+							file.Write(strings[i][j]);
+						}
+						file.WriteLine();
+					}
+				}
+			}
+
+			return;
+		}
+
+		/// <summary>
+		/// ファイルに書き込みます。
+		/// </summary>
+		/// <param name="FilePath">ファイルへのパス</param>
+		/// <param name="strings">書き込み内容</param>
+		/// <param name="delimiter">区切り文字</param>
+		/// <param name="append">データをファイルに追加する場合は true、ファイルを上書きする場合は false。</param>
+		/// <returns></returns>
+		public static void WriteStrings(string FilePath, List<List<string>> strings, string delimiter)
+		{
+			using (StreamWriter file = new StreamWriter(FilePath, true, Encoding.Unicode))
+			{
+				if (strings != null)
+				{
+					for (int i = 0; i < strings.Count; i++)
+					{
+						for (int j = 0; j < strings[i].Count; j++)
+						{
+							if (j != 0)
+							{
+								file.Write(delimiter);
+							}
+							file.Write(strings[i][j]);
+						}
+						file.WriteLine();
+					}
+				}
+			}
+
+			return;
+		}
+
+		/// <summary>
+		/// ファイルに書き込みます。
+		/// </summary>
+		/// <param name="FilePath">ファイルへのパス</param>
+		/// <param name="strings">書き込み内容</param>
+		/// <param name="delimiter">区切り文字</param>
+		/// <param name="append">データをファイルに追加する場合は true、ファイルを上書きする場合は false。</param>
+		/// <returns></returns>
+		public static void WriteStrings(string FilePath, string[][] strings, string delimiter)
+		{
+			using (StreamWriter file = new StreamWriter(FilePath, true, Encoding.Unicode))
+			{
+				if (strings != null)
+				{
+					for (int i = 0; i < strings.Length; i++)
+					{
+						for (int j = 0; j < strings[i].Length; j++)
+						{
+							if (j != 0)
 							{
 								file.Write(delimiter);
 							}
@@ -306,6 +405,7 @@ namespace FileIO
 			return;
 		}
 	}
+
 
 	/// <summary>
 	/// ファイル関連メソッド
